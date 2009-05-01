@@ -7,6 +7,9 @@ class Range
     @elements = []
     arg.sort.each {|x| add(x)}
   end
+  def summary
+    "#{@elements.join(".")}"
+  end
   def add(i)
     @elements << i
   end
