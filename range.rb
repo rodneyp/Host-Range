@@ -4,9 +4,13 @@ class Range
     @start = nil
     @last = nil
     @next = nil
+    @elements = []
     arg.sort.each {|x| add(x)}
   end
   def add(i)
+    @elements << i
+  end
+  def calc(i)
     if @start.nil?
       @start = i 
     elsif i != @next
@@ -26,11 +30,12 @@ class Range
     end
   end  
   def to_s
+    @elements.sort.each {|x| calc(x)}
     if @start == @last and @d.length == 0
       @start.to_s
     else
       @d << range_part_str
-      @d.join(",")
+      "[#{@d.join(",")}]"
     end
   end
 end
