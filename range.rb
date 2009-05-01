@@ -19,6 +19,8 @@ class Range
   def range_part_str
     if @start == @last
       @start.to_i
+    elsif @last - @start == 1
+      [@start,@last].join(",")
     else
       "#{@start}-#{@last}"    
     end
