@@ -2,14 +2,10 @@
 require 'range'
 
 class HostRange < Range
-  def initialize(host)
+  def initialize(name,host)
     super([])
     parts = host.split(/\./)
-    if /(.*)\d+$/.match(parts.first)
-      @name = $1
-    else
-      @name = parts.first
-    end
+    @name = name
     @host = parts[1..-1].join(".")
   end
   def to_s
@@ -31,11 +27,11 @@ while not $stdin.eof? do
     n = $2.reverse
     d = $1.reverse.to_i
     if colo[coloname][n].nil?
-      colo[coloname][n] = HostRange.new(h)
+      colo[coloname][n] = HostRange.new(n,h)
     end
     colo[coloname][n].add(d)
   else
-    colo[coloname][p.last] = HostRange.new(h) if colo[coloname][p.last].nil?
+    colo[coloname][p.last] = HostRange.new(p.last,h) if colo[coloname][p.last].nil?
   end
 end
 
