@@ -1,16 +1,10 @@
 #!/usr/bin/ruby
 require 'range'
 
-hosts = []
-open(Dir["NODE*"].sort.last,"r") do |fh|
-  header = fh.readline  #skip this line
-  while not fh.eof? do
-    hosts << fh.readline.split(/,/)[1]
-  end
-end
-
 colo = Hash.new{nil}
-hosts.each do |h|
+
+while not $stdin.eof? do 
+  h = $stdin.readline.strip
   p = h.split(/\./).reverse
   coloname = p[2..-3].join(".")
   if colo[coloname].nil?
