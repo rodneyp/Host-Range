@@ -1,3 +1,7 @@
+info:
+
+  you'll need an export file from opsdb to run count-hosts.rb.
+Just save it in the current dir.
 
 todo/future:
 
