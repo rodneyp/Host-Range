@@ -36,8 +36,9 @@ while not $stdin.eof? do
 end
 
 colo.keys.sort.each do |c| 
-  colo[c].keys.sort.each do |k|
-    puts colo[c][k].to_s
+  colo_types = colo[c]
+  colo_types.keys.sort.each do |k|
+    puts colo_types[k].to_s
   end
   puts ""
 end
