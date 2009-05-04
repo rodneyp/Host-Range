@@ -37,7 +37,7 @@ end
 
 colo.keys.sort.each do |c| 
   colo[c].keys.sort.each do |k|
-    puts colo[c][k]
+    puts colo[c][k].to_s
   end
   puts ""
 end
