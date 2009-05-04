@@ -1,17 +1,14 @@
-class Range
+class IntRange < Array
   def initialize(arg)
+    super
     @d = []
     @start = nil
     @last = nil
     @next = nil
-    @elements = []
-    arg.sort.each {|x| add(x)}
+    arg.sort.each {|x| self << x}
   end
   def summary
-    "#{@elements.join(".")}"
-  end
-  def add(i)
-    @elements << i
+    self.join(".")
   end
   def calc(i)
     if @start.nil?
@@ -33,7 +30,7 @@ class Range
     end
   end  
   def to_s
-    @elements.sort.each {|x| calc(x)}
+    self.sort.each {|x| calc(x)}
     if @start == @last and @d.length == 0
       @start.to_s
     else

@@ -15,7 +15,7 @@ class RangeTest < Test::Unit::TestCase
      ["[1,3-5]", [1,3,4,5]],
      ["[1,3,5,7,9]", [1,3,5,7,9]],
      ["[1,3,5-7,9]", [1,3,5,6,7,9]]].each do |s,a|
-       r = Range.new(a)
+       r = IntRange.new(a)
        assert_equal s, r.to_s
     end
   end
