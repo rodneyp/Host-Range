@@ -1,18 +1,6 @@
 #!/usr/bin/ruby
 require 'range'
 
-class HostRange < IntRange
-  def initialize(name,host)
-    super([])
-    parts = host.split(/\./)
-    @name = name
-    @host = parts[1..-1].join(".")
-  end
-  def to_s
-    "#{@name}#{super}.#{@host}"
-  end
-end
-
 colo = Hash.new{nil}
 
 while not $stdin.eof? do 

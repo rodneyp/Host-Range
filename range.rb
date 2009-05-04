@@ -36,3 +36,16 @@ class IntRange < Array
     end
   end
 end
+
+class HostRange < IntRange
+  def initialize(name,host)
+    super([])
+    parts = host.split(/\./)
+    @name = name
+    @host = parts[1..-1].join(".")
+  end
+  def to_s
+    "#{@name}#{super}.#{@host}"
+  end
+end
+
