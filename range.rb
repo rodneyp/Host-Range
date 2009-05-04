@@ -7,15 +7,10 @@ class Range
     @elements = []
     arg.sort.each {|x| add(x)}
   end
-  def summary
-    "#{@elements.join(".")}"
-  end
-  def add(i)
-    @elements << i
-  end
+  def add(x); @elements << x; end
   def calc(i)
-    if @start.nil? or (i != @next)
-      @d << range_part_str unless @start.nil?
+    if i != @next
+      @d << range_part_str unless @next.nil?
       @start = i
     end
     @last = i
