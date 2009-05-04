@@ -1,37 +1,34 @@
 class IntRange < Array
+  @@min_reduce = 2
   def initialize(arg)
     super
     @d = []
     @start = nil
-    @last = nil
+    @last = ""
     @next = nil
     self.replace(arg)
   end
   def calc(i)
-    if @start.nil?
-      @start = i 
-    elsif i != @next
-      @d << range_part_str
+    if i != @next
+      @d << range_part_str unless @start.nil?
       @start = i
     end
     @last = i
     @next = i + 1
   end
   def range_part_str
-    if @start == @last
-      @start.to_i
-    elsif @last - @start == 1
-      [@start,@last].join(",")
+    if @last - @start < @@min_reduce
+      Range.new(@start,@last).to_a.join(",")
     else
       "#{@start}-#{@last}"    
     end
   end  
   def to_s
     self.sort.each {|x| calc(x)}
-    if @start == @last and @d.length == 0
-      @start.to_s
+    if self.length < 2
+      @last.to_s
     else
-      @d << range_part_str
+      @d << range_part_str 
       "[#{@d.join(",")}]"
     end
   end
@@ -46,6 +43,12 @@ class HostRange < IntRange
   end
   def to_s
     "#{@name}#{super}.#{@host}"
+  end
+  def reduce; to_s; end
+  def expand
+    self.sort.collect  do |n|
+      "#{@name}#{n}.#{@host}"
+    end
   end
 end
 
