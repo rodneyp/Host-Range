@@ -14,10 +14,8 @@ class Range
     @elements << i
   end
   def calc(i)
-    if @start.nil?
-      @start = i 
-    elsif i != @next
-      @d << range_part_str
+    if @start.nil? or (i != @next)
+      @d << range_part_str unless @start.nil?
       @start = i
     end
     @last = i
