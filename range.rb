@@ -5,10 +5,7 @@ class IntRange < Array
     @start = nil
     @last = nil
     @next = nil
-    arg.sort.each {|x| self << x}
-  end
-  def summary
-    self.join(".")
+    self.replace(arg)
   end
   def calc(i)
     if @start.nil?
